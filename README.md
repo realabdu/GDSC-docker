@@ -25,6 +25,7 @@
 
 ### what's Django
 - it's a free and open-source python web frameworks, that uses MTV - Model Template View ( derived from MVC )
+- 	![2](https://en.wikipedia.org/wiki/File:MVC-Process.svg)
 	- you can get up and running quickly. 
 	- very good for MVPs ( minimum viable product )
 	- scalable.
