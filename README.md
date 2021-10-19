@@ -1,12 +1,7 @@
 # containerize a python web application
 
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
 
 
-# kashkool
-
-- we will not be using testing ( becuase im not that good in it ) 
-	- although we  will use deplyment check ( python3 manage.py check --deploy
 
 
 ## introduction
