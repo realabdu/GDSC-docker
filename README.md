@@ -25,7 +25,7 @@
 
 ### what's Django
 - it's a free and open-source python web frameworks, that uses MTV - Model Template View ( derived from MVC )
-- 	![2](https://en.wikipedia.org/wiki/File:MVC-Process.svg)
+- 	![what is mvc](https://en.wikipedia.org/wiki/File:MVC-Process.svg)
 	- you can get up and running quickly. 
 	- very good for MVPs ( minimum viable product )
 	- scalable.
@@ -78,7 +78,7 @@ Quit the server with CONTROL-C.
 ```
 you can navigate to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and confirm that your app is running.
 
-now we need to create a  requirements.txt , which is a  file that lists all of the modules needed for the Django project to work. and write this in it
+now we need to create a  requirements.txt , which is a  file that lists all of the modules needed for the Django project to work. and write this in it ( it should at the same direcotry as manage.py)
 ```
  Django==3.2.8
  ```
@@ -119,6 +119,11 @@ now we need to create a builder which is the docker file.
 docker file is  :  a text document that contains all the commands a user could call on the command line to assemble an image.  its similar to setting up an environment on a Linux server.
 
 docker file should be in the same directory as manage . py
+
+the basic syntax of a docker file is 
+```
+INSTRUCTION  arguments 
+```
 ```
 # the offical apline base image
 FROM python:3.9.6-alpine
@@ -163,8 +168,7 @@ services:
       - ./GDSC/:/usr/src/GDSC/
     ports:
       - 8000:8000
-    env_file:
-      - ./.env.dev
+    
 
 ```
 to recap.
@@ -177,38 +181,12 @@ to recap.
 	-  for example `web` service which we used above, it uses an image that’s built from the `Dockerfile` in the current directory. It then binds the container and the host machine to the exposed port, `8000`.  so currently we have only one service. 
 see [ docker compose docs](https://docs.docker.com/compose/)
 
-to make our Django app secure we need to set some environment variables ( think of it as PATH) 
-which are SECRET_KEY  and DEBUG and ALLOWED_HOSTS.
-in settings.py 
 
-from this 
-```
-SECRET_KEY = 'your secret key'
-DEBUG = True
-ALLOWED_HOSTS = []
-```
- to this 
-```
-#insert this on the top 
-import os
-
-SECRET_KEY = os.eviron.get("SECRET_KEY")
-DEBUG = int(os.environ.get("DEBUG",default=1))
-ALLOWED_HOSTS = [*]
-```
-
-and then define the environment variables in a .env.dev file that sould exist at the same directory of docker-compose.yml
-
-```
-DEBUG=1
-SECRET_KEY=foo
-```
 
 so your files should look like this 
 ```
 .
 ├── docker-compose.yml
-├── .env.dev
 ├── GDSC
 │   ├── db.sqlite3
 │   ├── Dockerfile
@@ -241,7 +219,7 @@ if you are running docker desktop you already have docker compose installed if n
 
 ```
 $ docker-compose build
-$	docker-compose up -d
+$ docker-compose up -d
 ```
 
 until now we have been working with Django development server, but what if we want to deploy our application using a production grade server ? 
